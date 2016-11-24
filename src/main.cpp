@@ -1,16 +1,18 @@
-#include <iostream>
-#include "Point2D.h"
-#include "Box2D.h"
-#include "Ray2D.h"
-#include "alien.h"
-#include "global_configs.h"
-#include "memory"
-using namespace std;
-int main()
+#include <QApplication>
+#include <QMainWindow>
+#include <QSurfaceFormat>
+#include "main_window.hpp"
+
+int main(int argc, char ** argv)
 {
-  std::unique_ptr<int> p(new int);
-  *p = 10;
-  cout << *p << endl;
-  cout << "Hello\n";
-  return 0;
+  QApplication a(argc, argv);
+
+  QSurfaceFormat format;
+  format.setDepthBufferSize(24);
+  format.setStencilBufferSize(8);
+  QSurfaceFormat::setDefaultFormat(format);
+
+  MainWindow mw;
+  mw.show();
+  return a.exec();
 }
