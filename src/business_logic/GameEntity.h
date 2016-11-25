@@ -1,7 +1,7 @@
 #pragma once
 #include <typeinfo>
 #include <iostream>
-#include "logger.h"
+#include "patterns/logger.h"
 
 class GameEntity
 {

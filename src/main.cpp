@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QMainWindow>
 #include <QSurfaceFormat>
-#include "main_window.hpp"
+#include "graphics/main_window.hpp"
 
 int main(int argc, char ** argv)
 {

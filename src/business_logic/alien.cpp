@@ -1,8 +1,8 @@
 #include "Alien.h"
-#include "Point2D.h"
+#include "geometry/Point2D.h"
 #include "Global_configs.h"
-#include "Box2D.h"
-#include "Logger.h"
+#include "geometry/Box2D.h"
+#include "patterns/Logger.h"
 
 Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
 {

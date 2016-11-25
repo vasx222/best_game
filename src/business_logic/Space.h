@@ -5,7 +5,7 @@
 #include "Bullet.h"
 #include "Alien.h"
 #include "Obstacle.h"
-#include "Point2D.h"
+#include "geometry/Point2D.h"
 
 class Space : public GameObject
 {
