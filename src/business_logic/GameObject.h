@@ -1,7 +1,6 @@
 #pragma once
 #include "GameEntity.h"
-#include "Box2D.h"
-#include "Ray2D.h"
+#include "geometry/Box2D.h"
 
 class GameObject : public GameEntity
 {

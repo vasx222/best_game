@@ -1,12 +1,12 @@
 #include <iostream>
 #include <gtest/gtest.h>
-#include "Point2D.h"
-#include "Box2D.h"
-#include "Ray2D.h"
-#include "alien.h"
-#include "global_configs.h"
-#include "player.h"
-#include "factory.h"
+#include "geometry/Point2D.h"
+#include "geometry/Box2D.h"
+#include "geometry/Ray2D.h"
+#include "business_logic/alien.h"
+#include "business_logic/global_configs.h"
+#include "business_logic/player.h"
+#include "patterns/factory.h"
 
 using namespace std;
 

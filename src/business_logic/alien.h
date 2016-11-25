@@ -1,5 +1,4 @@
 #pragma once
-#include "Ray2D.h"
 #include "Gun.h"
 #include "GameObject.h"
 #include <functional>

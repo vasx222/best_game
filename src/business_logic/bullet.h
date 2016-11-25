@@ -1,5 +1,4 @@
 #pragma once
-#include "Ray2D.h"
 #include "GameObject.h"
 
 class Bullet : public GameObject
