@@ -67,7 +67,7 @@ void GLWidget::initializeGL()
 
   m_texture = new QOpenGLTexture(QImage("data/alien.png"));
 
-///  m_time.start();
+  m_time.start();
 }
 
 void GLWidget::InitStars(int const starsAmount, int const starRadius, int const anglesAmount)
