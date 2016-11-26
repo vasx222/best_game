@@ -29,6 +29,8 @@ public:
   Point2D Normalize() const; // returns normalized vector
   double Length() const;
   Point2D Vector(Point2D const & point) const;
+  Point2D RotateCW(double const & angle) const;
+  Point2D RotateCCW(double const & angle) const;
 
   static double DotProduct(Point2D const & p1, Point2D const & p2);
   static double CrossProduct(Point2D const & p1, Point2D const & p2);

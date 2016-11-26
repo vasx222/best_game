@@ -25,8 +25,10 @@ protected:
   void paintGL() override;
   void initializeGL() override;
 
-  void Update(float elapsedSeconds);
+  void UpdateKeys(float elapsedSeconds);
   void Render();
+  void InitStars(int const starsAmount, int const starRadius, int const anglesAmount);
+  void DrawStars(QPainter * painter);
 
   void mousePressEvent(QMouseEvent * e) override;
   void mouseDoubleClickEvent(QMouseEvent * e) override;
@@ -51,4 +53,7 @@ private:
 
   QVector2D m_position = QVector2D(200, 200);
   std::array<bool, 4> m_directions = {{ false, false, false, false }};
+
+  std::vector<QPoint> m_starsCenters;
+  std::vector<QPoint> m_starPoints;
 };

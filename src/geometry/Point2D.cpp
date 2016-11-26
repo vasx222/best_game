@@ -114,6 +114,16 @@ Point2D Point2D::Vector(Point2D const & point) const
   return point - *this;
 }
 
+Point2D Point2D::RotateCW(double const & angle) const
+{
+  return {this->x() * cos(angle) + this->y() * sin(angle), -this->x() * sin(angle) + this->y() * cos(angle)};
+}
+
+Point2D Point2D::RotateCCW(double const & angle) const
+{
+  return {this->x() * cos(angle) - this->y() * sin(angle), this->x() * sin(angle) + this->y() * cos(angle)};
+}
+
 std::ostream & operator << (std::ostream & os, Point2D const & obj)
 {
   os << "Point2D{" << obj.x() << ", " << obj.y() << "}" << std::endl;
