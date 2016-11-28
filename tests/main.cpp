@@ -10,6 +10,7 @@
 #include "business_logic//space.h"
 #include <vector>
 #include <list>
+#include <fstream>
 
 using namespace std;
 
@@ -217,21 +218,6 @@ TEST(factory, test){
   EXPECT_EQ(gun->TypeGun(), 0);
 }
 
-TEST(observer, test)
-{
-  InitConfig();
-  auto al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
-  auto al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
-  Alien::TOnHit onHit([] (int const typeBullet)
-  {
-      Logger::Instance() << "Bullet hit the alien with " << bulletConfigs[typeBullet].damage << " damage\n";
-  });
-  al1->SetOnHit(onHit);
-  al2->SetOnHit(onHit);
-  al1->Hit(0);
-  al2->Hit(1);
-}
-
 TEST(loggingCollections, test)
 {
   InitConfig();
@@ -243,8 +229,24 @@ TEST(loggingCollections, test)
   Logger::Instance() << space.m_bullets;
 }
 
+TEST(observer, test)
+{
+  InitConfig();
+  auto al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
+  auto al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
+  Alien::TOnHit onHit([] (int const typeBullet)
+  {
+    Logger::Instance() << "Bullet hit the alien with " << bulletConfigs[typeBullet].damage << " damage\n";
+  });
+  al1->SetOnHit(&onHit);
+  al2->SetOnHit(&onHit);
+  al1->Hit(0);
+  al2->Hit(1);
+}
+
 int main(int argc, char * argv[])
 {
+  Logger::InitLogFile();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

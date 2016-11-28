@@ -40,9 +40,9 @@ void Alien::Shot()
   m_gun.Shot(Box().PointMin());
 }
 
-void Alien::SetOnHit(Alien::TOnHit const & onHit)
+void Alien::SetOnHit(Alien::TOnHit * const onHit)
 {
-  *m_onHit = onHit;
+  m_onHit = onHit;
 }
 
 void Alien::Hit(int const typeBullet)

@@ -2,6 +2,9 @@
 #include "Gun.h"
 #include "GameObject.h"
 #include <functional>
+#include "Global_configs.h"
+#include "patterns/logger.h"
+#include <fstream>
 
 class Alien : public GameObject
 {
@@ -13,7 +16,7 @@ public:
   Alien operator = (Alien const & obj);
   int const & TypeBeing() const;
   void Shot();
-  void SetOnHit(TOnHit const & onHit);
+  void SetOnHit(TOnHit * const onHit); // если сделать ссылку, то программа вылетает
   void Hit(int const typeBullet);
 private:
   int m_typeBeing;

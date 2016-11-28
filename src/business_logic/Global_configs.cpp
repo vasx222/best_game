@@ -6,6 +6,9 @@ std::vector <TBeing> beingConfigs;
 
 void InitConfig()
 {
+  bulletConfigs.clear();
+  gunConfigs.clear();
+  beingConfigs.clear();
   bulletConfigs.push_back(TBullet{10, 10, 10, 1});
   bulletConfigs.push_back(TBullet{30, 5, 20, 50});
   gunConfigs.push_back(TGun{1, 0});
