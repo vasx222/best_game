@@ -98,9 +98,9 @@ void GLWidget::paintGL()
   glClearColor(m_background.redF(), m_background.greenF(), m_background.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  DrawStars(&painter);
-
   painter.beginNativePainting();
+
+  DrawStars(&painter);
   glFrontFace(GL_CW);
   glCullFace(GL_BACK);
   glEnable(GL_CULL_FACE);

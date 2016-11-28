@@ -20,19 +20,10 @@ aux_source_directory(${SOURCE_ROOT}/geometry SRC_LIST_GEOMETRY)
 aux_source_directory(${SOURCE_ROOT}/business_logic SRC_LIST_BUSINESS_LOGIC)
 aux_source_directory(${SOURCE_ROOT}/patterns SRC_LIST_PATTERNS)
 aux_source_directory(${SOURCE_ROOT}/graphics SRC_LIST_GRAPHICS)
-
-add_subdirectory(3party/jsoncpp)
-include_directories(3party/jsoncpp/include)
-aux_source_directory(3party/jsoncpp/src/lib_json JSONCPP_SRC)
-
-add_subdirectory(3party/pugixml)
-include_directories(3party/pugixml/src)
-aux_source_directory(3party/pugixml/src PUGIXML_SRC)
-
-qt5_wrap_cpp(QT_WRAPPED_SRC ${SRC_LIST} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC} ${PUGIXML_SRC})
+qt5_wrap_cpp(QT_WRAPPED_SRC ${SRC_LIST} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS})
 
 # Create executable by SRC_LIST.
-add_executable(${PROJECT_NAME} ${SRC_LIST} ${QT_WRAPPED_SRC} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC} ${PUGIXML_SRC})
+add_executable(${PROJECT_NAME} ${SRC_LIST} ${QT_WRAPPED_SRC} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS})
 
 # Qt modules
 qt5_use_modules(${PROJECT_NAME} Widgets OpenGL)

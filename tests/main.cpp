@@ -229,29 +229,6 @@ TEST(observer, test)
   al2->Hit(1);
 }
 
-TEST(rotation, test)
-{
-//  int starsAmount = 100, starRadius = 10, anglesAmount = 7;
-//  m_starsCenters.resize(starsAmount);
-//  for (size_t i = 0; i < m_starsCenters.size(); i++)
-//  {
-//    m_starsCenters[i] = {rand() % m_mainWindow->width(), rand() % m_mainWindow->height()};
-//  }
-
-//  Point2D p(starRadius / sqrt(2), starRadius / sqrt(2));
-//  double const deltaAngle = 2 * M_PI / anglesAmount;
-//  for (size_t i = 0; i < anglesAmount; i++)
-//  {
-//    m_starPoints.push_back({(int)p.x(), (int)p.y()});
-//    p = p.RotateCW(deltaAngle);
-//  }
-
-//  for (size_t i = 0; i < m_starPoints.size(); i++)
-//  {
-//    Logger::Instance() << m_starPoints[i].x() << " " << m_starPoints[i].y() << "\n";
-//  }
-}
-
 int main(int argc, char * argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);
