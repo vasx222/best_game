@@ -9,6 +9,8 @@
 #include <QtGui/QGuiApplication>
 #include <cmath>
 #include <iostream>
+#include <QtOpenGL>
+#include <QOpenGLFunctions_1_5>
 
 #include "main_window.hpp"
 #include "geometry/Point2D.h"
@@ -97,7 +99,6 @@ void GLWidget::paintGL()
 
   glClearColor(m_background.redF(), m_background.greenF(), m_background.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
   painter.beginNativePainting();
 
   DrawStars(&painter);
@@ -106,7 +107,6 @@ void GLWidget::paintGL()
   glEnable(GL_CULL_FACE);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
   Render();
 
   glDisable(GL_CULL_FACE);
@@ -168,7 +168,7 @@ void GLWidget::DrawStars(QPainter * painter)
     static double k = 0;
     k += (1.0) / 5000.0;
     if (k > 2.0 * M_PI) k -= 2.0 * M_PI;
-    QColor starColor = {100, 200, 220, fabs(sin(k + i * 100 / 5000.0)) * 255.0};
+    QColor starColor = {100, 200, 220, (int)(fabs(sin(k + i * 100 / 5000.0)) * 255.0)};
     painter->setBrush(starColor);
     painter->setPen(starColor);
     for (size_t j = 0; j < m_starPoints.size(); j++)

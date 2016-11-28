@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include "GameEntity.h"
+
 class TBullet
 {
 public:

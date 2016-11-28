@@ -4,21 +4,21 @@
 Gun::Gun(Box2D const & box, Point2D const & direction, int const typeGun): m_typeGun(typeGun)
 {
   SetParameters(box, direction);
-  Logger::Instance() << "Constructor " << *this;
+  Logger::Instance() << "Constructor " << *this << "\n";
 }
 
 Gun::Gun(Gun const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeGun = obj.TypeGun();
-  Logger::Instance() << "Copy constructor " << *this;
+  Logger::Instance() << "Copy constructor " << *this << "\n";
 }
 
 Gun & Gun::operator = (Gun const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeGun = obj.TypeGun();
-  Logger::Instance() << "Copy operator " << *this;
+  Logger::Instance() << "Copy operator " << *this << "\n";
   return *this;
 }
 

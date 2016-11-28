@@ -10,7 +10,7 @@ Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing):
   Point2D point(box.Width() / 2, box.Width() / 2);
   m_gun = Gun(Box2D(point, point), direction, beingConfigs[m_typeBeing].typeGun);
   m_hp = beingConfigs[m_typeBeing].hp;
-  Logger::Instance() << "Constructor " << *this;
+  Logger::Instance() << "Constructor " << *this << "\n";
 }
 
 Alien::Alien(Alien const & obj)
@@ -18,7 +18,7 @@ Alien::Alien(Alien const & obj)
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
   m_hp = beingConfigs[m_typeBeing].hp;
-  Logger::Instance() << "Copy constructor " << *this;
+  Logger::Instance() << "Copy constructor " << *this << "\n";
 }
 
 Alien Alien::operator = (Alien const & obj)
@@ -26,7 +26,7 @@ Alien Alien::operator = (Alien const & obj)
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
   m_hp = beingConfigs[m_typeBeing].hp;
-  Logger::Instance() << "Copy operator " << *this;
+  Logger::Instance() << "Copy operator " << *this << "\n";
   return *this;
 }
 

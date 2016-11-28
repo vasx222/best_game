@@ -7,6 +7,9 @@
 #include "business_logic/global_configs.h"
 #include "business_logic/player.h"
 #include "patterns/factory.h"
+#include "business_logic//space.h"
+#include <vector>
+#include <list>
 
 using namespace std;
 
@@ -227,6 +230,17 @@ TEST(observer, test)
   al2->SetOnHit(onHit);
   al1->Hit(0);
   al2->Hit(1);
+}
+
+TEST(loggingCollections, test)
+{
+  InitConfig();
+  Space space(Box2D(0, 0, 1000, 1000), Point2D(0, 1));
+  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
+  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
+  space.m_bullets.push_back(Bullet(Box2D(1, 1, 10, 10), Point2D(0, 1), 0, 0));
+  Logger::Instance() << space.m_aliens;
+  Logger::Instance() << space.m_bullets;
 }
 
 int main(int argc, char * argv[])

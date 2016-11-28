@@ -4,6 +4,13 @@
 #include <QOpenGLFunctions>
 #include <QTime>
 #include "textured_rect.hpp"
+#include <QOpenGLBuffer>
+#include <QOpenGLTexture>
+#include <QOpenGLShader>
+#include <QOpenGLShaderProgram>
+#include <QSize>
+#include <QVector2D>
+#include <QPaintEngine>
 
 #include <array>
 

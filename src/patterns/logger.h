@@ -15,3 +15,13 @@ private:
   friend class Singleton<Logger>;
   Logger() = default;
 };
+
+template<typename T, template<typename, typename...> class C, typename... Args>
+std::ostream & operator << (std::ostream & os, C<T, Args...> const & objs)
+{
+  os << "Collection: ";
+  for (auto const & obj : objs)
+    os << obj << ' ';
+  os << "\n";
+  return os;
+}
