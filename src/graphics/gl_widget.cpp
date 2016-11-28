@@ -8,10 +8,11 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QGuiApplication>
 #include <cmath>
-
 #include <iostream>
 
 #include "main_window.hpp"
+#include "geometry/Point2D.h"
+#include "patterns/logger.h"
 
 namespace
 {
@@ -69,18 +70,37 @@ void GLWidget::initializeGL()
   m_time.start();
 }
 
+void GLWidget::InitStars(int const starsAmount, int const starRadius, int const anglesAmount)
+{
+  m_starsCenters.resize(starsAmount);
+  for (size_t i = 0; i < m_starsCenters.size(); i++)
+  {
+    m_starsCenters[i] = {rand() % this->rect().width(), rand() % this->rect().height()};
+  }
+
+  Point2D p(starRadius / sqrt(2), starRadius / sqrt(2));
+  double const deltaAngle = 2 * M_PI / anglesAmount;
+  for (size_t i = 0; i < anglesAmount; i++)
+  {
+    m_starPoints.push_back({(int)(p.x() / (1 + (i % 2))), (int)(p.y() / (1 + (i % 2)))});
+    p = p.RotateCW(deltaAngle);
+  }
+}
+
 void GLWidget::paintGL()
 {
   int const elapsed = m_time.elapsed();
-  Update(elapsed / 1000.0f);
+  UpdateKeys(elapsed / 1000.0f);
 
   QPainter painter;
   painter.begin(this);
-  painter.beginNativePainting();
 
   glClearColor(m_background.redF(), m_background.greenF(), m_background.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  DrawStars(&painter);
+
+  painter.beginNativePainting();
   glFrontFace(GL_CW);
   glCullFace(GL_BACK);
   glEnable(GL_CULL_FACE);
@@ -116,9 +136,10 @@ void GLWidget::resizeGL(int w, int h)
 {
   m_screenSize.setWidth(w);
   m_screenSize.setHeight(h);
+  InitStars(100, 10, 12);
 }
 
-void GLWidget::Update(float elapsedSeconds)
+void GLWidget::UpdateKeys(float elapsedSeconds)
 {
   float const kSpeed = 20.0f; // pixels per second.
 
@@ -137,6 +158,26 @@ void GLWidget::Render()
   m_texturedRect->Render(m_texture, m_position, QSize(128, 128), m_screenSize);
   m_texturedRect->Render(m_texture, QVector2D(400, 400), QSize(128, 128), m_screenSize);
   m_texturedRect->Render(m_texture, QVector2D(600, 600), QSize(128, 128), m_screenSize);
+}
+
+void GLWidget::DrawStars(QPainter * painter)
+{
+  QPoint points[m_starPoints.size()];
+  for (size_t i = 0; i < m_starsCenters.size(); i++)
+  {
+    static double k = 0;
+    k += (1.0) / 5000.0;
+    if (k > 2.0 * M_PI) k -= 2.0 * M_PI;
+    QColor starColor = {100, 200, 220, fabs(sin(k + i * 100 / 5000.0)) * 255.0};
+    painter->setBrush(starColor);
+    painter->setPen(starColor);
+    for (size_t j = 0; j < m_starPoints.size(); j++)
+    {
+      points[j] = {m_starPoints[j].x() + m_starsCenters[i].x(), m_starPoints[j].y() + m_starsCenters[i].y()};
+    }
+    painter->drawPolygon(points, m_starPoints.size(), Qt::OddEvenFill/*Qt::WindingFill*/);
+  }
+
 }
 
 void GLWidget::mousePressEvent(QMouseEvent * e)
