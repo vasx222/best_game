@@ -2,16 +2,17 @@
 #include "Singleton.h"
 #include <iostream>
 #include <fstream>
+#include <list>
 
 class Logger : public Singleton<Logger>
 {
 public:
-  #define FILENAME "log.txt"
+  #define LOGFILENAME "log.txt"
   template<typename T>
   Logger & operator << (T const & val)
   {
     std::cout << val;
-    std::ofstream ofs(FILENAME, std::ofstream::out | std::ofstream::app);
+    std::ofstream ofs(LOGFILENAME, std::ofstream::out | std::ofstream::app);
     if (ofs.is_open())
     {
       ofs << val;
@@ -21,20 +22,10 @@ public:
   }
   static void InitLogFile()
   {
-    std::ofstream ofs(FILENAME);
+    std::ofstream ofs(LOGFILENAME);
     ofs.close();
   }
 private:
   friend class Singleton<Logger>;
   Logger() = default;
 };
-
-template<typename T, template<typename, typename...> class C, typename... Args>
-std::ostream & operator << (std::ostream & os, C<T, Args...> const & objs)
-{
-  os << "Collection: ";
-  for (auto const & obj : objs)
-    os << obj << ' ';
-  os << "\n";
-  return os;
-}

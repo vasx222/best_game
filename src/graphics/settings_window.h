@@ -25,6 +25,9 @@ class SettingsWindow : public QMainWindow
 
 public:
   SettingsWindow(MainWindow * mainWindow);
+  //#define JSONFILENAME "settings.json"
+//  void JsonReadFromFile();
+//  void JsonWriteToFile();
 
 public slots:
   void ButtonSave();

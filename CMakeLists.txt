@@ -20,19 +20,14 @@ aux_source_directory(${SOURCE_ROOT}/geometry SRC_LIST_GEOMETRY)
 aux_source_directory(${SOURCE_ROOT}/business_logic SRC_LIST_BUSINESS_LOGIC)
 aux_source_directory(${SOURCE_ROOT}/patterns SRC_LIST_PATTERNS)
 aux_source_directory(${SOURCE_ROOT}/graphics SRC_LIST_GRAPHICS)
+qt5_wrap_cpp(QT_WRAPPED_SRC ${SRC_LIST} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC})
 
 add_subdirectory(3party/jsoncpp)
 include_directories(3party/jsoncpp/include)
 aux_source_directory(3party/jsoncpp/src/lib_json JSONCPP_SRC)
 
-add_subdirectory(3party/pugixml)
-include_directories(3party/pugixml/src)
-aux_source_directory(3party/pugixml/src PUGIXML_SRC)
-
-qt5_wrap_cpp(QT_WRAPPED_SRC ${SRC_LIST} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC} ${PUGIXML_SRC})
-
 # Create executable by SRC_LIST.
-add_executable(${PROJECT_NAME} ${SRC_LIST} ${QT_WRAPPED_SRC} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC} ${PUGIXML_SRC})
+add_executable(${PROJECT_NAME} ${SRC_LIST} ${QT_WRAPPED_SRC} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC})
 
 # Qt modules
 qt5_use_modules(${PROJECT_NAME} Widgets OpenGL)
@@ -49,8 +44,9 @@ include_directories(3party/googletest/googletest/include ${SOURCE_ROOT})
 # Set up testing project.
 set(TESTS_SOURCE_ROOT tests)
 aux_source_directory(${TESTS_SOURCE_ROOT} TEST_SRC_FILES)
-set(TEST_SRC_FILES ${SRC_LIST} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${TEST_SRC_FILES} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS})
+set(TEST_SRC_FILES ${SRC_LIST} ${TEST_SRC_FILES} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS})
 list(REMOVE_ITEM TEST_SRC_FILES src/main.cpp)
+
 qt5_wrap_cpp(QT_WRAPPED_TEST_SRC ${TEST_SRC_FILES})
 add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES} ${QT_WRAPPED_TEST_SRC})
 # Link gtest and gtest_main libraries.
@@ -70,4 +66,3 @@ endmacro(copy_files)
 
 set(DATA_FILES_LIST data/alien.png)
 copy_files("${DATA_FILES_LIST}" ${CMAKE_CURRENT_BINARY_DIR})
-

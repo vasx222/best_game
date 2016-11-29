@@ -225,6 +225,7 @@ TEST(loggingCollections, test)
   space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
   space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
   space.m_bullets.push_back(Bullet(Box2D(1, 1, 10, 10), Point2D(0, 1), 0, 0));
+  //using namespace logCollections;
   Logger::Instance() << space.m_aliens;
   Logger::Instance() << space.m_bullets;
 }
