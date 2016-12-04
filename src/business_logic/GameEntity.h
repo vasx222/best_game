@@ -17,7 +17,7 @@ public:
     return os;
   }
   template<typename T, template<typename, typename...> class C, typename... Args>
-  friend std::ostream & operator << (std::ostream & os, /*std::list<T>*/C<T, Args...> const & objs)
+  friend std::ostream & operator << (std::ostream & os, C<T, Args...> const & objs)
   {
     os << "Collection: ";
     for (auto const & obj : objs)

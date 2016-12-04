@@ -4,8 +4,6 @@
 #include "gl_widget.hpp"
 #include "settings_window.h"
 #include "business_logic/Global_configs.h"
-#include <json/json.h>
-#include <json/writer.h>
 
 typedef void (QWidget::*QWidgetVoidSlot)();
 
@@ -31,7 +29,6 @@ void MainWindow::ButtonSettingsClick()
 
 MainWindow::MainWindow()
 {
-  Json::Value v;
   this->resize(220, 120);
   QWidget * centralWidget = new QWidget(this);
   this->setCentralWidget(centralWidget);

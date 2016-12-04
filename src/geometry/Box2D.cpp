@@ -78,8 +78,8 @@ bool Box2D::PointInside(Point2D const & point)
 void Box2D::Move(Point2D const & point)
 {
   Point2D dp = m_pointMax - m_pointMin;
-  m_pointMin = point;
-  m_pointMax = point + dp;
+  m_pointMin = point - dp / 2;
+  m_pointMax = m_pointMin + dp;
 }
 
 void Box2D::SetWidth(double const value)
@@ -103,9 +103,20 @@ double Box2D::Width() const
   return m_pointMax.x() - m_pointMin.x();
 }
 
-double Box2D::Heigth() const
+double Box2D::Height() const
 {
   return m_pointMax.y() - m_pointMin.y();
+}
+
+QSize Box2D::Size() const
+{
+  return QSize((int)Width(), (int)Height());
+}
+
+QPoint Box2D::CentralPoint() const
+{
+  Point2D p = (m_pointMin + m_pointMax) / 2;
+  return QPoint(p.x(), p.y());
 }
 
 std::ostream & operator << (std::ostream & os, const Box2D & box)

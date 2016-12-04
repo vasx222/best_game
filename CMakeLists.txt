@@ -44,7 +44,7 @@ include_directories(3party/googletest/googletest/include ${SOURCE_ROOT})
 # Set up testing project.
 set(TESTS_SOURCE_ROOT tests)
 aux_source_directory(${TESTS_SOURCE_ROOT} TEST_SRC_FILES)
-set(TEST_SRC_FILES ${SRC_LIST} ${TEST_SRC_FILES} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS})
+set(TEST_SRC_FILES ${SRC_LIST} ${TEST_SRC_FILES} ${SRC_LIST_GEOMETRY} ${SRC_LIST_BUSINESS_LOGIC} ${SRC_LIST_PATTERNS} ${SRC_LIST_GRAPHICS} ${JSONCPP_SRC})
 list(REMOVE_ITEM TEST_SRC_FILES src/main.cpp)
 
 qt5_wrap_cpp(QT_WRAPPED_TEST_SRC ${TEST_SRC_FILES})
@@ -64,5 +64,5 @@ macro(copy_files GLOBPAT DESTINATION)
   endforeach(FILENAME)
 endmacro(copy_files)
 
-set(DATA_FILES_LIST data/alien.png)
+set(DATA_FILES_LIST "data/alien.png" "data/ship2.png")
 copy_files("${DATA_FILES_LIST}" ${CMAKE_CURRENT_BINARY_DIR})

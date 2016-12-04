@@ -5,8 +5,6 @@
 #include <QGridLayout>
 #include <QOpenGLWidget>
 #include <QPushButton>
-#include <QMessageBox>
-#include <QTabWidget>
 #include <QLayout>
 #include <QLabel>
 #include <QComboBox>

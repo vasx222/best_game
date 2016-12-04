@@ -4,40 +4,10 @@
 #include "geometry/Box2D.h"
 #include "patterns/Logger.h"
 
-Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
+Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing) :
+  GameBeing(box, direction, typeBeing)
 {
-  SetParameters(box, direction);
-  Point2D point(box.Width() / 2, box.Width() / 2);
-  m_gun = Gun(Box2D(point, point), direction, beingConfigs[m_typeBeing].typeGun);
-  m_hp = beingConfigs[m_typeBeing].hp;
   Logger::Instance() << "Constructor " << *this << "\n";
-}
-
-Alien::Alien(Alien const & obj)
-{
-  SetParameters(obj.Box(), obj.Direction());
-  m_typeBeing = obj.TypeBeing();
-  m_hp = beingConfigs[m_typeBeing].hp;
-  Logger::Instance() << "Copy constructor " << *this << "\n";
-}
-
-Alien Alien::operator = (Alien const & obj)
-{
-  SetParameters(obj.Box(), obj.Direction());
-  m_typeBeing = obj.TypeBeing();
-  m_hp = beingConfigs[m_typeBeing].hp;
-  Logger::Instance() << "Copy operator " << *this << "\n";
-  return *this;
-}
-
-int const & Alien::TypeBeing() const
-{
-  return m_typeBeing;
-}
-
-void Alien::Shot()
-{
-  m_gun.Shot(Box().PointMin());
 }
 
 void Alien::SetOnHit(Alien::TOnHit * const onHit)
@@ -51,5 +21,5 @@ void Alien::Hit(int const typeBullet)
   {
     (*m_onHit)(typeBullet);
   }
-  m_hp -= bulletConfigs[typeBullet].damage;
+  SetHp(Hp() - bulletConfigs[typeBullet].damage);
 }

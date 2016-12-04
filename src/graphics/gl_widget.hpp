@@ -11,8 +11,9 @@
 #include <QSize>
 #include <QVector2D>
 #include <QPaintEngine>
-
 #include <array>
+
+#include "business_logic/Space.h"
 
 class MainWindow;
 
@@ -34,8 +35,6 @@ protected:
 
   void UpdateKeys(float elapsedSeconds);
   void Render();
-  void InitStars(int const starsAmount, int const starRadius, int const anglesAmount);
-  void DrawStars(QPainter * painter);
 
   void mousePressEvent(QMouseEvent * e) override;
   void mouseDoubleClickEvent(QMouseEvent * e) override;
@@ -52,15 +51,11 @@ private:
 
   unsigned int m_frames = 0;
   QTime m_time;
-  QColor m_background;
-  QSize m_screenSize;
 
-  QOpenGLTexture * m_texture = nullptr;
   TexturedRect * m_texturedRect = nullptr;
 
   QVector2D m_position = QVector2D(200, 200);
   std::array<bool, 4> m_directions = {{ false, false, false, false }};
 
-  std::vector<QPoint> m_starsCenters;
-  std::vector<QPoint> m_starPoints;
+  Space m_space;
 };

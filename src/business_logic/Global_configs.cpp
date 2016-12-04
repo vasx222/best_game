@@ -12,5 +12,6 @@ void InitConfig()
   bulletConfigs.push_back(TBullet{10, 10, 10, 1});
   bulletConfigs.push_back(TBullet{30, 5, 20, 50});
   gunConfigs.push_back(TGun{1, 0});
-  beingConfigs.push_back(TBeing{100, 10, 50, 50, 0, 100});
+  beingConfigs.push_back(TBeing{100, 10, 50, 50, 0, 100, "data/ship2.png", nullptr});
+  beingConfigs.push_back(TBeing{100, 10, 50, 50, 0, 100, "data/alien.png", nullptr});
 }

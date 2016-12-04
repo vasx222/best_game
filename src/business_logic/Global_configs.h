@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "GameEntity.h"
+#include <QString>
+#include <QOpenGLTexture>
 
 class TBullet
 {
@@ -25,6 +27,8 @@ public: // TODO: type of behavior
   int height;
   int typeGun;
   int ammo;
+  QString fileName;
+  QOpenGLTexture * texture;
 };
 
 void InitConfig();

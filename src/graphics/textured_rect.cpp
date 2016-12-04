@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QPaintEngine>
 #include <math.h>
+#include "patterns/logger.h"
 
 TexturedRect::~TexturedRect()
 {
@@ -37,6 +38,7 @@ bool TexturedRect::Initialize(QOpenGLFunctions * functions)
     "void main(void)\n"
     "{\n"
     "  highp vec4 color = texture2D(tex, v_texCoord);\n"
+    "color.a *= 1.0;\n"
     "  gl_FragColor = clamp(color, 0.0, 1.0);\n"
     "}\n";
   if (!m_fragmentShader->compileSourceCode(fsrc)) return false;

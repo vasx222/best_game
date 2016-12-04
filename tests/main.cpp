@@ -11,6 +11,8 @@
 #include <vector>
 #include <list>
 #include <fstream>
+#include <QColor>
+#include <QSize>
 
 using namespace std;
 
@@ -221,7 +223,7 @@ TEST(factory, test){
 TEST(loggingCollections, test)
 {
   InitConfig();
-  Space space(Box2D(0, 0, 1000, 1000), Point2D(0, 1));
+  Space space(Player(Box2D(100, 100, 200, 200), Point2D(0, 1), 0), QColor(), QSize());
   space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
   space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
   space.m_bullets.push_back(Bullet(Box2D(1, 1, 10, 10), Point2D(0, 1), 0, 0));

@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Point2D.h"
+#include <QSize>
+#include <QPoint>
 
 class Box2D
 {
@@ -25,7 +27,9 @@ public:
   void SetSides(double const value);
 
   double Width() const;
-  double Heigth() const;
+  double Height() const;
+  QSize Size() const;
+  QPoint CentralPoint() const;
 private:
   Point2D m_pointMin, m_pointMax;
 };
