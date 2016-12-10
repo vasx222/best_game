@@ -3,6 +3,12 @@
 
 Point2D::Point2D(Point2D const & obj) : m_x(obj.m_x), m_y(obj.m_y) {}
 
+Point2D::Point2D(QPoint const & point)
+{
+  m_x = point.x();
+  m_y = point.y();
+}
+
 Point2D::Point2D(Point2D && obj)
 {
   std::swap(obj.m_x, m_x);

@@ -18,6 +18,12 @@ class MainWindow : public QMainWindow
 
 public:
   MainWindow();
+  QWidget * m_widgetBorder1 = nullptr;
+  QWidget * m_widgetBorder2 = nullptr;
+  QLabel * m_labelHp = nullptr;
+  QLabel * m_labelGun = nullptr;
+  QLabel * m_labelAmmo = nullptr;
+  QLabel * m_labelScore = nullptr;
 
 public slots:
   void ButtonStartClick();

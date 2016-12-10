@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
+#include <QPoint>
 class Point2D
 {
 public:
   #define EPS 0.000001
   Point2D() = default;
   Point2D(Point2D const & obj);
+  Point2D(QPoint const & point);
   Point2D(Point2D && obj);
   Point2D(double x, double y);
   // TODO: constructor initializer list

@@ -202,7 +202,7 @@ TEST(hierarchy, test)
   EXPECT_EQ(bul1.TypeBullet(), 0);
   EXPECT_EQ(bul1.Owner(), 0);
 
-  Gun gun1(box1, dir1, 0);
+  Gun gun1(dir1, 0, 0);
   EXPECT_EQ(gun1.Box(), box1);
   EXPECT_EQ(gun1.Direction(), dir1);
   EXPECT_EQ(gun1.TypeGun(), 0);
@@ -214,7 +214,7 @@ TEST(hierarchy, test)
 
 TEST(factory, test){
   InitConfig();
-  auto gun = Factory::Create<Gun>(Box2D(100, 100, 200, 200), Point2D(0, 1), 0);
+  auto gun = Factory::Create<Gun>(Point2D(0, 1), 0, 0);
   EXPECT_EQ(gun->Box(), Box2D(100, 100, 200, 200));
   EXPECT_EQ(gun->Direction(), Point2D(0, 1));
   EXPECT_EQ(gun->TypeGun(), 0);
@@ -224,9 +224,9 @@ TEST(loggingCollections, test)
 {
   InitConfig();
   Space space(Player(Box2D(100, 100, 200, 200), Point2D(0, 1), 0), QColor(), QSize());
-  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
-  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
-  space.m_bullets.push_back(Bullet(Box2D(1, 1, 10, 10), Point2D(0, 1), 0, 0));
+//  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
+//  space.m_aliens.push_back(Alien(Box2D(1, 1, 10, 10), Point2D(0, 1), 0));
+//  space.m_bullets.push_back(Bullet(Box2D(1, 1, 10, 10), Point2D(0, 1), 0, 0));
   //using namespace logCollections;
   Logger::Instance() << space.m_aliens;
   Logger::Instance() << space.m_bullets;

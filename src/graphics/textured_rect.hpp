@@ -16,7 +16,7 @@ public:
 
   bool Initialize(QOpenGLFunctions * functions);
   void Render(QOpenGLTexture * texture, QVector2D const & position,
-              QSize const & size, QSize const & screenSize);
+              QSize const & size, QSize const & screenSize, double const angle);
 
 private:
   QOpenGLFunctions * m_functions = nullptr;

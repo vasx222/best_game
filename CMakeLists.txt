@@ -64,5 +64,9 @@ macro(copy_files GLOBPAT DESTINATION)
   endforeach(FILENAME)
 endmacro(copy_files)
 
-set(DATA_FILES_LIST "data/alien.png" "data/ship2.png")
+set(DATA_FILES_LIST "data/ready/ship.png" "data/ready/alien1.png" "data/ready/alien2.png"
+  "data/ready/alien3.png" "data/ready/explosion.png" "data/ready/asteroid1.png" "data/ready/asteroid2.png"
+  "data/ready/red_bullet.png" "data/ready/green_bullet.png" "data/ready/white_bullet.png"
+  "data/ready/blue_double_bullet.png" "data/ready/red_bullet_2.png"  "data/ready/aid.png" "data/ready/laser.png"
+  "data/ready/heavy_gun.png")
 copy_files("${DATA_FILES_LIST}" ${CMAKE_CURRENT_BINARY_DIR})

@@ -18,7 +18,7 @@ public:
   bool operator == (Box2D const & obj) const;
   Point2D const & PointMin() const;
   Point2D const & PointMax() const;
-  bool IntersectBox(Box2D const & box);
+  bool IntersectBox(Box2D const & box) const;
   double DiagonalLength();
   bool PointInside(Point2D const & point);
   void Move(Point2D const & point);
@@ -30,6 +30,7 @@ public:
   double Height() const;
   QSize Size() const;
   QPoint CentralPoint() const;
+  Point2D PCentralPoint() const;
 private:
   Point2D m_pointMin, m_pointMax;
 };

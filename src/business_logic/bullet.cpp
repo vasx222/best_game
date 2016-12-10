@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "Global_configs.h"
 using namespace std;
 
 Bullet::Bullet(Box2D const & box, Point2D const & direction, int const typeBullet, int const owner):
@@ -8,21 +9,15 @@ Bullet::Bullet(Box2D const & box, Point2D const & direction, int const typeBulle
   Logger::Instance() << "Constructor " << *this << "\n";
 }
 
-Bullet::Bullet(Bullet const & obj)
+Bullet::Bullet(Point2D const & position, Point2D const & direction, int const typeBullet, int const owner) :
+  m_typeBullet(typeBullet), m_owner(owner)
 {
-  SetParameters(obj.Box(), obj.Direction());
-  m_typeBullet = obj.TypeBullet();
-  m_owner = obj.Owner();
-  Logger::Instance() << "Copy constructor " << *this << "\n";
-}
-
-Bullet Bullet::operator = (Bullet const & obj)
-{
-  SetParameters(obj.Box(), obj.Direction());
-  m_typeBullet = obj.TypeBullet();
-  m_owner = obj.Owner();
-  Logger::Instance() << "Copy operator " << *this << "\n";
-  return *this;
+  int width = bulletConfigs[m_typeBullet].width;
+  int height = bulletConfigs[m_typeBullet].height;
+  Point2D deltaPoint(width / 2, height / 2);
+  Box2D box(position - deltaPoint, position + deltaPoint);
+  SetParameters(box, direction);
+  Logger::Instance() << "Constructor " << *this << "\n";
 }
 
 int const & Bullet::TypeBullet() const

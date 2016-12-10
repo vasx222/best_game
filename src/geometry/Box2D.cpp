@@ -54,7 +54,7 @@ Point2D const & Box2D::PointMin() const { return m_pointMin; }
 
 Point2D const & Box2D::PointMax() const { return m_pointMax; }
 
-bool Box2D::IntersectBox(Box2D const & box)
+bool Box2D::IntersectBox(Box2D const & box) const
 {
   if (this->PointMax().x() < box.PointMin().x()) return false;
   if (this->PointMax().y() < box.PointMin().y()) return false;
@@ -117,6 +117,11 @@ QPoint Box2D::CentralPoint() const
 {
   Point2D p = (m_pointMin + m_pointMax) / 2;
   return QPoint(p.x(), p.y());
+}
+
+Point2D Box2D::PCentralPoint() const
+{
+  return (m_pointMin + m_pointMax) / 2;
 }
 
 std::ostream & operator << (std::ostream & os, const Box2D & box)

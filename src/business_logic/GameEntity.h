@@ -21,7 +21,7 @@ public:
   {
     os << "Collection: ";
     for (auto const & obj : objs)
-      os << obj << ' ';
+      os << *obj << ' ';
     os << "\n";
     return os;
   }

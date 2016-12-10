@@ -12,6 +12,7 @@
 #include <QVector2D>
 #include <QPaintEngine>
 #include <array>
+#include <QWidget>
 
 #include "business_logic/Space.h"
 
@@ -25,7 +26,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
   Q_OBJECT
 public:
-  GLWidget(MainWindow * mw, QColor const & background);
+  GLWidget(MainWindow/*QWidget*/ * mw, QColor const & background);
   ~GLWidget();
 
 protected:

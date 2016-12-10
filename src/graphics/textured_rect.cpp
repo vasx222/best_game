@@ -72,7 +72,7 @@ bool TexturedRect::Initialize(QOpenGLFunctions * functions)
 }
 
 void TexturedRect::Render(QOpenGLTexture * texture, QVector2D const & position,
-                          QSize const & size, QSize const & screenSize)
+                          QSize const & size, QSize const & screenSize, double const angle)
 {
   if (texture == nullptr) return;
 
@@ -81,6 +81,7 @@ void TexturedRect::Render(QOpenGLTexture * texture, QVector2D const & position,
                 2.0f * position.y() / screenSize.height() - 1.0f);
   mvp.scale(static_cast<float>(size.width()) / screenSize.width(),
             static_cast<float>(size.height()) / screenSize.height());
+  if (angle != 0) mvp.rotate(fabs(angle) * 180.0 / M_PI, 0, 0, angle > 0 ? -1 : 1);
 
   m_program->bind();
   m_program->setUniformValue(m_textureUniform, 0); // use texture unit 0

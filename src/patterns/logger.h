@@ -12,12 +12,12 @@ public:
   Logger & operator << (T const & val)
   {
     std::cout << val;
-    std::ofstream ofs(LOGFILENAME, std::ofstream::out | std::ofstream::app);
-    if (ofs.is_open())
-    {
-      ofs << val;
-    }
-    ofs.close();
+//    std::ofstream ofs(LOGFILENAME, std::ofstream::out | std::ofstream::app);
+//    if (ofs.is_open())
+//    {
+//      ofs << val;
+//    }
+//    ofs.close();
     return *this;
   }
   static void InitLogFile()
